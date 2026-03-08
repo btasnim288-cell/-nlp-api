@@ -6,7 +6,7 @@ import numpy as np
 app = Flask(__name__)
 
 # Chargement du modèle une seule fois au démarrage
-model = SentenceTransformer("paraphrase-multilingual-MiniLM-L12-v2")
+model = SentenceTransformer("all-MiniLM-L6-v2")
 
 def score_semantique(texte1: str, texte2: str) -> float:
     """Calcule la similarité sémantique entre deux textes (0 à 100)"""
