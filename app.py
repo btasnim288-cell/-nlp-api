@@ -5,7 +5,6 @@ import numpy as np
 
 app = Flask(__name__)
 
-# Chargement du modèle une seule fois au démarrage
 model = SentenceTransformer("all-MiniLM-L6-v2")
 
 def score_semantique(texte1: str, texte2: str) -> float:
@@ -35,16 +34,16 @@ def score_competences():
     # Score sémantique (NLP)
     sem = score_semantique(comp_candidat, comp_offre)
 
-    # Score exact (overlap)
+    # Score exact 
     exact = score_competences_exact(comp_candidat, comp_offre)
 
-    # Score final pondéré (sur 40 pts comme votre Laravel)
+    # Score final pondéré (sur 40 pts )
     final = round((0.6 * sem + 0.4 * exact) / 100 * 40, 2)
 
     return jsonify({
-        "score":           final,        # ← utilisé par Laravel
-        "semantic_score":  sem,          # ← bonus pour debug
-        "exact_score":     exact,        # ← bonus pour debug
+        "score":           final,        
+        "semantic_score":  sem,          
+        "exact_score":     exact,        
     })
 
 @app.route('/health', methods=['GET'])
